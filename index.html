@@ -1,0 +1,1400 @@
+<!doctype html>
+<html lang="id" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengumuman Hasil Tryout - SMP Negeri 1 Srono</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="/_sdk/data_sdk.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #1e3a5f 0%,
+          #2d5a87 50%,
+          #3d7ab5 100%
+        );
+      }
+      .card-shadow {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      }
+      .score-card {
+        background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      .result-appear {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      .medal {
+        display: inline-block;
+        font-size: 2rem;
+        margin-right: 0.5rem;
+      }
+      .rank-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+      .rank-1 {
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        color: #333;
+      }
+      .rank-2 {
+        background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+        color: #333;
+      }
+      .rank-3 {
+        background: linear-gradient(135deg, #cd7f32 0%, #e6b877 100%);
+        color: white;
+      }
+    </style>
+    <style>
+      body {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="h-full bg-slate-100 overflow-auto">
+    <div id="app" class="w-full min-h-full gradient-bg">
+      <!-- Login View -->
+      <div
+        id="login-view"
+        class="min-h-full flex flex-col items-center justify-center p-4 sm:p-6"
+      >
+        <div class="w-full max-w-md">
+          <!-- Header -->
+          <div class="text-center mb-8 animate-fade-in">
+            <div
+              class="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center card-shadow"
+            >
+              <svg
+                class="w-12 h-12 text-blue-800"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 14l9-5-9-5-9 5 9 5z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                />
+              </svg>
+            </div>
+            <h1
+              id="school-title"
+              class="text-2xl sm:text-3xl font-bold text-white mb-2"
+            >
+              SMP Negeri 1 Srono
+            </h1>
+            <h2
+              id="announcement-title"
+              class="text-lg sm:text-xl font-semibold text-blue-100"
+            >
+              Pengumuman Hasil Tryout Kelas 9
+            </h2>
+            <p class="text-blue-200 mt-2 text-sm">Tahun Pelajaran 2025/2026</p>
+          </div>
+          <!-- Login Card -->
+          <div
+            class="bg-white rounded-2xl card-shadow p-6 sm:p-8 animate-fade-in"
+            style="animation-delay: 0.1s"
+          >
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-bold text-gray-800">Login Siswa</h3>
+              <p class="text-gray-500 text-sm mt-1">
+                Masukkan NISN untuk melihat hasil
+              </p>
+            </div>
+            <form id="login-form" class="space-y-4">
+              <div>
+                <label
+                  for="nisn-input"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >NISN (Nomor Induk Siswa Nasional)</label
+                >
+                <input
+                  type="text"
+                  id="nisn-input"
+                  placeholder="Contoh: 0012345678"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-lg"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
+                />
+              </div>
+              <div
+                id="login-error"
+                class="hidden text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg"
+              ></div>
+              <button
+                type="submit"
+                id="login-btn"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Lihat Hasil
+              </button>
+            </form>
+            <div class="mt-6 pt-6 border-t border-gray-100">
+              <button
+                id="admin-toggle"
+                class="w-full text-gray-500 hover:text-blue-600 text-sm font-medium transition-colors flex items-center justify-center gap-2"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                Panel Admin
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Result View -->
+      <div
+        id="result-view"
+        class="hidden min-h-full flex flex-col items-center justify-center p-4 sm:p-6"
+      >
+        <div class="w-full max-w-lg">
+          <div
+            class="bg-white rounded-2xl card-shadow overflow-hidden result-appear"
+          >
+            <!-- Header -->
+            <div
+              class="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-center"
+            >
+              <div
+                class="w-16 h-16 mx-auto mb-3 bg-white/20 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-10 h-10 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h2 class="text-xl font-bold text-white">Hasil Tryout</h2>
+              <p id="result-school" class="text-blue-100 text-sm">
+                SMP Negeri 1 Srono
+              </p>
+            </div>
+            <!-- Ranking Badge -->
+            <div
+              id="rank-section"
+              class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 text-center border-b border-blue-100"
+            >
+              <p class="text-xs text-gray-500 mb-2">PERINGKAT KESELURUHAN</p>
+              <div class="flex items-center justify-center gap-2">
+                <span id="rank-medal" class="medal">🏅</span>
+                <span id="rank-badge" class="rank-badge rank-1"
+                  >Peringkat #1</span
+                >
+              </div>
+              <p id="rank-info" class="text-xs text-gray-600 mt-2">
+                Nilai rata-rata: 90.0
+              </p>
+            </div>
+            <!-- Student Info -->
+            <div class="p-6 border-b border-gray-100">
+              <div class="text-center">
+                <h3
+                  id="result-nama"
+                  class="text-2xl font-bold text-gray-800 mb-3"
+                >
+                  -
+                </h3>
+                <div class="grid grid-cols-2 gap-3 text-sm text-gray-500">
+                  <div class="bg-gray-50 p-2 rounded">
+                    <span class="block text-xs text-gray-400">NIS</span>
+                    <span id="result-nis" class="font-bold text-gray-700"
+                      >-</span
+                    >
+                  </div>
+                  <div class="bg-gray-50 p-2 rounded">
+                    <span class="block text-xs text-gray-400">NISN</span>
+                    <span id="result-nisn" class="font-bold text-gray-700"
+                      >-</span
+                    >
+                  </div>
+                  <div class="col-span-2 bg-blue-50 p-2 rounded">
+                    <span class="block text-xs text-blue-400">Kelas</span>
+                    <span
+                      id="result-kelas"
+                      class="font-bold text-blue-700 text-lg"
+                      >-</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Scores -->
+            <div class="p-6 space-y-4">
+              <h4
+                class="text-sm font-semibold text-gray-500 uppercase tracking-wider text-center mb-4"
+              >
+                Nilai Mata Pelajaran
+              </h4>
+              <div class="grid grid-cols-2 gap-4">
+                <!-- Matematika -->
+                <div class="score-card rounded-xl p-4 text-center">
+                  <div
+                    class="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewbox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="text-xs text-gray-500 mb-1">Matematika</p>
+                  <p id="result-mtk" class="text-3xl font-bold text-blue-600">
+                    -
+                  </p>
+                </div>
+                <!-- Bahasa Indonesia -->
+                <div class="score-card rounded-xl p-4 text-center">
+                  <div
+                    class="w-12 h-12 mx-auto mb-2 bg-green-100 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewbox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      />
+                    </svg>
+                  </div>
+                  <p class="text-xs text-gray-500 mb-1">Bahasa Indonesia</p>
+                  <p id="result-bind" class="text-3xl font-bold text-green-600">
+                    -
+                  </p>
+                </div>
+              </div>
+              <!-- Average -->
+              <div
+                class="mt-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 text-center"
+              >
+                <p class="text-sm text-amber-700 mb-1">Rata-rata Nilai</p>
+                <p id="result-avg" class="text-4xl font-bold text-amber-600">
+                  -
+                </p>
+              </div>
+            </div>
+            <!-- Back Button -->
+            <div class="p-6 bg-gray-50">
+              <button
+                id="back-btn"
+                class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-4 rounded-xl transition-all"
+              >
+                ← Kembali
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Admin Login View -->
+      <div
+        id="admin-login-view"
+        class="hidden min-h-full flex flex-col items-center justify-center p-4 sm:p-6"
+      >
+        <div class="w-full max-w-md">
+          <div class="bg-white rounded-2xl card-shadow p-8 animate-fade-in">
+            <div class="text-center mb-6">
+              <div
+                class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-8 h-8 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800">Login Admin</h3>
+              <p class="text-gray-500 text-sm mt-1">
+                Masukkan password untuk akses
+              </p>
+            </div>
+            <form id="admin-password-form" class="space-y-4">
+              <div>
+                <label
+                  for="admin-pass"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  id="admin-pass"
+                  placeholder="Masukkan password"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                />
+              </div>
+              <div
+                id="admin-error"
+                class="hidden text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg"
+              ></div>
+              <button
+                type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all"
+              >
+                Login Admin
+              </button>
+            </form>
+            <button
+              id="back-to-login"
+              class="w-full mt-4 text-gray-500 hover:text-gray-700 text-sm font-medium transition-colors"
+            >
+              ← Kembali
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Admin View -->
+      <div id="admin-view" class="hidden min-h-full p-4 sm:p-6">
+        <div class="max-w-6xl mx-auto">
+          <!-- Admin Header -->
+          <div class="bg-white rounded-2xl card-shadow p-6 mb-6">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+            >
+              <div>
+                <h2 class="text-2xl font-bold text-gray-800">Panel Admin</h2>
+                <p class="text-gray-500 text-sm">
+                  Kelola data siswa dan hasil tryout
+                </p>
+              </div>
+              <button
+                id="admin-logout"
+                class="bg-red-100 hover:bg-red-200 text-red-700 font-medium py-2 px-4 rounded-lg transition-all"
+              >
+                🚪 Logout
+              </button>
+            </div>
+          </div>
+          <!-- Import Section -->
+          <div class="bg-white rounded-2xl card-shadow p-6 mb-6">
+            <h3
+              class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2"
+            >
+              <svg
+                class="w-5 h-5 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                />
+              </svg>
+              Import Data Siswa
+            </h3>
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
+              <p class="text-sm text-blue-800 font-medium mb-3">
+                Petunjuk Import:
+              </p>
+              <p class="text-xs text-blue-700 mb-2">
+                1. Copy data dari Excel/Google Sheets (Nama | NIS | NISN | Kelas
+                | Matematika | Bahasa Indonesia)
+              </p>
+              <p class="text-xs text-blue-700 mb-2">
+                2. Paste langsung ke kolom bawah
+              </p>
+              <p class="text-xs text-blue-700">3. Klik "Import Data"</p>
+              <div
+                class="mt-3 bg-blue-100 px-2 py-1 rounded font-mono text-xs text-blue-900 overflow-x-auto"
+              >
+                Ahmad Fadli 12345 0012345678 9.1 85 90
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <label
+                  for="csv-input"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Paste Data di Sini</label
+                >
+                <textarea
+                  id="csv-input"
+                  rows="6"
+                  placeholder="Nama    NIS    NISN    Kelas    Matematika    Bahasa_Indonesia
+Ahmad Fadli    12345    0012345678    9.1    85    90"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm font-mono"
+                ></textarea>
+              </div>
+              <div class="flex gap-3">
+                <button
+                  id="import-btn"
+                  class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewbox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                    />
+                  </svg>
+                  Import Data
+                </button>
+                <button
+                  id="clear-all-btn"
+                  class="bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-3 px-4 rounded-xl transition-all"
+                >
+                  Hapus Semua
+                </button>
+              </div>
+              <div
+                id="import-status"
+                class="hidden text-sm text-center p-3 rounded-lg"
+              ></div>
+            </div>
+          </div>
+          <!-- Data Table -->
+          <div class="bg-white rounded-2xl card-shadow p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3
+                class="text-lg font-bold text-gray-800 flex items-center gap-2"
+              >
+                <svg
+                  class="w-5 h-5 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  />
+                </svg>
+                Data Siswa
+              </h3>
+              <span
+                id="student-count"
+                class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full"
+                >0 siswa</span
+              >
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th
+                      class="text-left p-3 font-semibold text-gray-600 rounded-tl-lg"
+                    >
+                      Nama
+                    </th>
+                    <th class="text-left p-3 font-semibold text-gray-600">
+                      NIS
+                    </th>
+                    <th class="text-left p-3 font-semibold text-gray-600">
+                      NISN
+                    </th>
+                    <th class="text-center p-3 font-semibold text-gray-600">
+                      Kelas
+                    </th>
+                    <th class="text-center p-3 font-semibold text-gray-600">
+                      MTK
+                    </th>
+                    <th class="text-center p-3 font-semibold text-gray-600">
+                      B.IND
+                    </th>
+                    <th class="text-center p-3 font-semibold text-gray-600">
+                      Rata-rata
+                    </th>
+                    <th
+                      class="text-center p-3 font-semibold text-gray-600 rounded-tr-lg"
+                    >
+                      Aksi
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="student-table-body">
+                  <tr>
+                    <td colspan="8" class="text-center p-8 text-gray-400">
+                      Belum ada data siswa. Import data untuk memulai.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              id="limit-warning"
+              class="hidden mt-4 bg-amber-50 border border-amber-200 text-amber-700 p-3 rounded-lg text-sm"
+            >
+              ⚠️ Batas maksimal 999 data siswa telah tercapai. Hapus beberapa
+              data untuk menambah data baru.
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Edit Modal -->
+      <div
+        id="edit-modal"
+        class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+      >
+        <div class="bg-white rounded-2xl card-shadow p-6 max-w-md w-full">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">Edit Data Siswa</h3>
+          <form id="edit-form" class="space-y-3">
+            <input type="hidden" id="edit-id" />
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >Nama</label
+              >
+              <input
+                type="text"
+                id="edit-nama"
+                class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >NIS</label
+              >
+              <input
+                type="text"
+                id="edit-nis"
+                class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >NISN</label
+              >
+              <input
+                type="text"
+                id="edit-nisn"
+                class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1"
+                >Kelas</label
+              >
+              <input
+                type="text"
+                id="edit-kelas"
+                class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none"
+              />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Matematika</label
+                >
+                <input
+                  type="number"
+                  id="edit-mtk"
+                  class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >B.IND</label
+                >
+                <input
+                  type="number"
+                  id="edit-bind"
+                  class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 outline-none"
+                />
+              </div>
+            </div>
+            <div class="flex gap-3 pt-4">
+              <button
+                type="button"
+                id="cancel-edit"
+                class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-all"
+              >
+                Batal
+              </button>
+              <button
+                type="submit"
+                id="save-edit"
+                class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all"
+              >
+                Simpan
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Delete Confirmation Modal -->
+      <div
+        id="delete-modal"
+        class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+      >
+        <div class="bg-white rounded-2xl card-shadow p-6 max-w-sm w-full">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-red-600"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Hapus Data?</h3>
+            <p id="delete-modal-text" class="text-gray-500 mb-6">
+              Apakah Anda yakin ingin menghapus data ini?
+            </p>
+            <div class="flex gap-3">
+              <button
+                id="cancel-delete"
+                class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-xl transition-all"
+              >
+                Batal
+              </button>
+              <button
+                id="confirm-delete"
+                class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-xl transition-all"
+              >
+                Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Clear All Confirmation Modal -->
+      <div
+        id="clear-modal"
+        class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+      >
+        <div class="bg-white rounded-2xl card-shadow p-6 max-w-sm w-full">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-red-600"
+                fill="none"
+                stroke="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+              Hapus Semua Data?
+            </h3>
+            <p class="text-gray-500 mb-6">
+              Semua data siswa akan dihapus secara permanen. Tindakan ini tidak
+              dapat dibatalkan.
+            </p>
+            <div class="flex gap-3">
+              <button
+                id="cancel-clear"
+                class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-xl transition-all"
+              >
+                Batal
+              </button>
+              <button
+                id="confirm-clear"
+                class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-xl transition-all"
+              >
+                Hapus Semua
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // App State
+      let studentsData = [];
+      let deleteTarget = null;
+      let editTarget = null;
+      let isProcessing = false;
+      let adminPassword = "admin2026";
+      let isAdminLoggedIn = false;
+
+      // Default Config
+      const defaultConfig = {
+        school_name: "SMP Negeri 1 Srono",
+        announcement_title: "Pengumuman Hasil Tryout Kelas 9",
+        admin_password: "admin2026",
+      };
+
+      // DOM Elements
+      const loginView = document.getElementById("login-view");
+      const resultView = document.getElementById("result-view");
+      const adminLoginView = document.getElementById("admin-login-view");
+      const adminView = document.getElementById("admin-view");
+      const loginForm = document.getElementById("login-form");
+      const nisnInput = document.getElementById("nisn-input");
+      const loginError = document.getElementById("login-error");
+      const adminToggle = document.getElementById("admin-toggle");
+      const adminPasswordForm = document.getElementById("admin-password-form");
+      const adminPassInput = document.getElementById("admin-pass");
+      const adminError = document.getElementById("admin-error");
+      const backToLogin = document.getElementById("back-to-login");
+      const adminLogout = document.getElementById("admin-logout");
+      const backBtn = document.getElementById("back-btn");
+      const csvInput = document.getElementById("csv-input");
+      const importBtn = document.getElementById("import-btn");
+      const clearAllBtn = document.getElementById("clear-all-btn");
+      const importStatus = document.getElementById("import-status");
+      const studentTableBody = document.getElementById("student-table-body");
+      const studentCount = document.getElementById("student-count");
+      const limitWarning = document.getElementById("limit-warning");
+      const editModal = document.getElementById("edit-modal");
+      const editForm = document.getElementById("edit-form");
+      const cancelEdit = document.getElementById("cancel-edit");
+      const deleteModal = document.getElementById("delete-modal");
+      const deleteModalText = document.getElementById("delete-modal-text");
+      const cancelDelete = document.getElementById("cancel-delete");
+      const confirmDelete = document.getElementById("confirm-delete");
+      const clearModal = document.getElementById("clear-modal");
+      const cancelClear = document.getElementById("cancel-clear");
+      const confirmClear = document.getElementById("confirm-clear");
+
+      // Data Handler for SDK
+      const dataHandler = {
+        onDataChanged(data) {
+          studentsData = data;
+          renderStudentTable();
+          updateStudentCount();
+          checkDataLimit();
+        },
+      };
+
+      // Initialize SDKs
+      async function initApp() {
+        if (window.elementSdk) {
+          window.elementSdk.init({
+            defaultConfig,
+            onConfigChange: async (config) => {
+              adminPassword = config.admin_password || "admin2026";
+              document.getElementById("school-title").textContent =
+                config.school_name || defaultConfig.school_name;
+              document.getElementById("announcement-title").textContent =
+                config.announcement_title || defaultConfig.announcement_title;
+              document.getElementById("result-school").textContent =
+                config.school_name || defaultConfig.school_name;
+            },
+            mapToCapabilities: (config) => ({
+              recolorables: [],
+              borderables: [],
+              fontEditable: undefined,
+              fontSizeable: undefined,
+            }),
+            mapToEditPanelValues: (config) =>
+              new Map([
+                [
+                  "school_name",
+                  config.school_name || defaultConfig.school_name,
+                ],
+                [
+                  "announcement_title",
+                  config.announcement_title || defaultConfig.announcement_title,
+                ],
+                ["admin_password", config.admin_password || "admin2026"],
+              ]),
+          });
+        }
+
+        if (window.dataSdk) {
+          const result = await window.dataSdk.init(dataHandler);
+          if (!result.isOk) {
+            console.error("Failed to initialize Data SDK");
+          }
+        }
+      }
+
+      // View Navigation
+      function showLogin() {
+        loginView.classList.remove("hidden");
+        resultView.classList.add("hidden");
+        adminLoginView.classList.add("hidden");
+        adminView.classList.add("hidden");
+        nisnInput.value = "";
+        loginError.classList.add("hidden");
+      }
+
+      function showResult(student) {
+        loginView.classList.add("hidden");
+        resultView.classList.remove("hidden");
+        adminLoginView.classList.add("hidden");
+        adminView.classList.add("hidden");
+
+        const avg =
+          (Number(student.matematika) + Number(student.bahasa_indonesia)) / 2;
+        const sortedByAvg = studentsData
+          .map((s) => ({
+            ...s,
+            avg: (Number(s.matematika) + Number(s.bahasa_indonesia)) / 2,
+          }))
+          .sort((a, b) => b.avg - a.avg);
+
+        const rank =
+          sortedByAvg.findIndex((s) => s.__backendId === student.__backendId) +
+          1;
+        const medalMap = { 1: "🥇", 2: "🥈", 3: "🥉" };
+        const medal = medalMap[rank] || "📊";
+        const rankClass = rank <= 3 ? `rank-${rank}` : "rank-badge";
+
+        document.getElementById("result-nama").textContent = student.nama;
+        document.getElementById("result-nis").textContent = student.nis;
+        document.getElementById("result-nisn").textContent = student.nisn;
+        document.getElementById("result-kelas").textContent =
+          `Kelas ${student.kelas}`;
+        document.getElementById("result-mtk").textContent = student.matematika;
+        document.getElementById("result-bind").textContent =
+          student.bahasa_indonesia;
+        document.getElementById("result-avg").textContent = avg.toFixed(1);
+        document.getElementById("rank-medal").textContent = medal;
+        document.getElementById("rank-badge").textContent =
+          `Peringkat #${rank}`;
+        document.getElementById("rank-badge").className =
+          `rank-badge ${rankClass}`;
+        document.getElementById("rank-info").textContent =
+          `Nilai rata-rata: ${avg.toFixed(1)} dari ${studentsData.length} siswa`;
+      }
+
+      function showAdminLogin() {
+        loginView.classList.add("hidden");
+        resultView.classList.add("hidden");
+        adminLoginView.classList.remove("hidden");
+        adminView.classList.add("hidden");
+        adminPassInput.value = "";
+        adminError.classList.add("hidden");
+      }
+
+      function showAdmin() {
+        loginView.classList.add("hidden");
+        resultView.classList.add("hidden");
+        adminLoginView.classList.add("hidden");
+        adminView.classList.remove("hidden");
+        isAdminLoggedIn = true;
+      }
+
+      // Login Events
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nisn = nisnInput.value.trim();
+
+        if (!nisn) {
+          loginError.textContent = "Masukkan NISN Anda";
+          loginError.classList.remove("hidden");
+          return;
+        }
+
+        const student = studentsData.find((s) => s.nisn === nisn);
+
+        if (student) {
+          showResult(student);
+        } else {
+          loginError.textContent =
+            "NISN tidak ditemukan. Pastikan NISN yang Anda masukkan benar.";
+          loginError.classList.remove("hidden");
+        }
+      });
+
+      adminToggle.addEventListener("click", showAdminLogin);
+      backToLogin.addEventListener("click", showLogin);
+      backBtn.addEventListener("click", showLogin);
+
+      // Admin Login
+      adminPasswordForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const password = adminPassInput.value;
+
+        if (password === adminPassword) {
+          showAdmin();
+        } else {
+          adminError.textContent = "Password salah!";
+          adminError.classList.remove("hidden");
+        }
+      });
+
+      adminLogout.addEventListener("click", () => {
+        isAdminLoggedIn = false;
+        showLogin();
+      });
+
+      // Parse data line
+      function parseDataLine(line) {
+        let parts;
+        if (line.includes("\t")) {
+          parts = line.split("\t");
+        } else if (line.includes("|")) {
+          parts = line.split("|");
+        } else if (line.includes(",")) {
+          parts = line.split(",");
+        } else {
+          parts = line.split(/\s+/);
+        }
+        return parts.map((p) => p.trim()).filter((p) => p);
+      }
+
+      // Import Data
+      importBtn.addEventListener("click", async () => {
+        if (isProcessing) return;
+
+        const pastedData = csvInput.value.trim();
+        if (!pastedData) {
+          showImportStatus("Paste data terlebih dahulu", "error");
+          return;
+        }
+
+        const lines = pastedData.split("\n").filter((line) => line.trim());
+        let dataLines = lines;
+        if (
+          lines[0].toUpperCase().includes("NAMA") ||
+          lines[0].toUpperCase().includes("NIS")
+        ) {
+          dataLines = lines.slice(1);
+        }
+
+        if (dataLines.length === 0) {
+          showImportStatus("Tidak ada data untuk diimport", "error");
+          return;
+        }
+
+        if (studentsData.length + dataLines.length > 999) {
+          showImportStatus(
+            `Tidak dapat menambah ${dataLines.length} data. Batas maksimal 999 data.`,
+            "error",
+          );
+          return;
+        }
+
+        isProcessing = true;
+        importBtn.disabled = true;
+        importBtn.innerHTML =
+          '<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Mengimport...';
+
+        let successCount = 0;
+        let errorCount = 0;
+
+        for (const line of dataLines) {
+          const parts = parseDataLine(line);
+
+          if (parts.length >= 6) {
+            const [nama, nis, nisn, kelas, matematika, bahasa_indonesia] =
+              parts;
+            const exists = studentsData.some((s) => s.nisn === nisn);
+            if (exists) {
+              errorCount++;
+              continue;
+            }
+
+            const result = await window.dataSdk.create({
+              nama,
+              nis,
+              nisn,
+              kelas,
+              matematika: Number(matematika) || 0,
+              bahasa_indonesia: Number(bahasa_indonesia) || 0,
+            });
+
+            if (result.isOk) {
+              successCount++;
+            } else {
+              errorCount++;
+            }
+          } else {
+            errorCount++;
+          }
+        }
+
+        isProcessing = false;
+        importBtn.disabled = false;
+        importBtn.innerHTML =
+          '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg> Import Data';
+
+        if (successCount > 0) {
+          csvInput.value = "";
+          showImportStatus(
+            `✓ Berhasil mengimport ${successCount} data siswa${errorCount > 0 ? `, ${errorCount} gagal` : ""}`,
+            "success",
+          );
+        } else {
+          showImportStatus(
+            "✗ Gagal mengimport data. Pastikan format benar.",
+            "error",
+          );
+        }
+      });
+
+      function showImportStatus(message, type) {
+        importStatus.textContent = message;
+        importStatus.classList.remove(
+          "hidden",
+          "bg-green-50",
+          "text-green-700",
+          "bg-red-50",
+          "text-red-700",
+        );
+        importStatus.classList.add(
+          type === "success"
+            ? "bg-green-50 text-green-700"
+            : "bg-red-50 text-red-700",
+        );
+        setTimeout(() => {
+          importStatus.classList.add("hidden");
+        }, 5000);
+      }
+
+      // Render Student Table
+      function renderStudentTable() {
+        if (studentsData.length === 0) {
+          studentTableBody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center p-8 text-gray-400">
+              Belum ada data siswa. Import data untuk memulai.
+            </td>
+          </tr>
+        `;
+          return;
+        }
+
+        const sortedByAvg = studentsData
+          .map((s) => ({
+            ...s,
+            avg: (Number(s.matematika) + Number(s.bahasa_indonesia)) / 2,
+          }))
+          .sort((a, b) => b.avg - a.avg);
+
+        const existingRows = new Map();
+        studentTableBody.querySelectorAll("tr[data-id]").forEach((row) => {
+          existingRows.set(row.dataset.id, row);
+        });
+
+        const placeholder = studentTableBody.querySelector("tr:not([data-id])");
+        if (placeholder) placeholder.remove();
+
+        sortedByAvg.forEach((student, index) => {
+          const id = student.__backendId;
+          const existingRow = existingRows.get(id);
+          const avg = student.avg.toFixed(1);
+
+          if (existingRow) {
+            existingRow.querySelector(".student-nama").textContent =
+              student.nama;
+            existingRow.querySelector(".student-nis").textContent = student.nis;
+            existingRow.querySelector(".student-nisn").textContent =
+              student.nisn;
+            existingRow.querySelector(".student-kelas").textContent =
+              student.kelas;
+            existingRow.querySelector(".student-mtk").textContent =
+              student.matematika;
+            existingRow.querySelector(".student-bind").textContent =
+              student.bahasa_indonesia;
+            existingRow.querySelector(".student-avg").textContent = avg;
+            existingRows.delete(id);
+          } else {
+            const row = document.createElement("tr");
+            row.dataset.id = id;
+            row.className = index % 2 === 0 ? "bg-white" : "bg-gray-50";
+            row.innerHTML = `
+            <td class="p-3 student-nama font-medium text-gray-800">${student.nama}</td>
+            <td class="p-3 student-nis text-gray-600">${student.nis}</td>
+            <td class="p-3 student-nisn text-gray-600">${student.nisn}</td>
+            <td class="p-3 student-kelas text-center font-semibold text-purple-600">${student.kelas}</td>
+            <td class="p-3 student-mtk text-center font-semibold text-blue-600">${student.matematika}</td>
+            <td class="p-3 student-bind text-center font-semibold text-green-600">${student.bahasa_indonesia}</td>
+            <td class="p-3 student-avg text-center font-bold text-amber-600">${avg}</td>
+            <td class="p-3 text-center">
+              <button onclick="openEditModal('${id}')" class="text-blue-500 hover:text-blue-700 hover:bg-blue-50 p-2 rounded-lg transition-colors inline-block">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                </svg>
+              </button>
+              <button onclick="openDeleteModal('${id}')" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-colors inline-block">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+              </button>
+            </td>
+          `;
+            studentTableBody.appendChild(row);
+          }
+        });
+
+        existingRows.forEach((row) => row.remove());
+      }
+
+      function updateStudentCount() {
+        studentCount.textContent = `${studentsData.length} siswa`;
+      }
+
+      function checkDataLimit() {
+        if (studentsData.length >= 999) {
+          limitWarning.classList.remove("hidden");
+        } else {
+          limitWarning.classList.add("hidden");
+        }
+      }
+
+      // Edit Modal
+      window.openEditModal = function (id) {
+        const student = studentsData.find((s) => s.__backendId === id);
+        if (student) {
+          editTarget = student;
+          document.getElementById("edit-id").value = id;
+          document.getElementById("edit-nama").value = student.nama;
+          document.getElementById("edit-nis").value = student.nis;
+          document.getElementById("edit-nisn").value = student.nisn;
+          document.getElementById("edit-kelas").value = student.kelas;
+          document.getElementById("edit-mtk").value = student.matematika;
+          document.getElementById("edit-bind").value = student.bahasa_indonesia;
+          editModal.classList.remove("hidden");
+        }
+      };
+
+      cancelEdit.addEventListener("click", () => {
+        editModal.classList.add("hidden");
+        editTarget = null;
+      });
+
+      editForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!editTarget || isProcessing) return;
+
+        isProcessing = true;
+        document.getElementById("save-edit").disabled = true;
+
+        const updated = {
+          ...editTarget,
+          nama: document.getElementById("edit-nama").value,
+          nis: document.getElementById("edit-nis").value,
+          nisn: document.getElementById("edit-nisn").value,
+          kelas: document.getElementById("edit-kelas").value,
+          matematika: Number(document.getElementById("edit-mtk").value) || 0,
+          bahasa_indonesia:
+            Number(document.getElementById("edit-bind").value) || 0,
+        };
+
+        const result = await window.dataSdk.update(updated);
+        isProcessing = false;
+        document.getElementById("save-edit").disabled = false;
+
+        if (result.isOk) {
+          editModal.classList.add("hidden");
+          editTarget = null;
+        }
+      });
+
+      editModal.addEventListener("click", (e) => {
+        if (e.target === editModal) {
+          editModal.classList.add("hidden");
+          editTarget = null;
+        }
+      });
+
+      // Delete Modal
+      window.openDeleteModal = function (id) {
+        const student = studentsData.find((s) => s.__backendId === id);
+        if (student) {
+          deleteTarget = student;
+          deleteModalText.textContent = `Apakah Anda yakin ingin menghapus data ${student.nama}?`;
+          deleteModal.classList.remove("hidden");
+        }
+      };
+
+      cancelDelete.addEventListener("click", () => {
+        deleteModal.classList.add("hidden");
+        deleteTarget = null;
+      });
+
+      confirmDelete.addEventListener("click", async () => {
+        if (!deleteTarget || isProcessing) return;
+
+        isProcessing = true;
+        confirmDelete.disabled = true;
+        confirmDelete.textContent = "Menghapus...";
+
+        const result = await window.dataSdk.delete(deleteTarget);
+
+        isProcessing = false;
+        confirmDelete.disabled = false;
+        confirmDelete.textContent = "Hapus";
+        deleteModal.classList.add("hidden");
+        deleteTarget = null;
+
+        if (!result.isOk) {
+          showImportStatus("Gagal menghapus data", "error");
+        }
+      });
+
+      deleteModal.addEventListener("click", (e) => {
+        if (e.target === deleteModal) {
+          deleteModal.classList.add("hidden");
+          deleteTarget = null;
+        }
+      });
+
+      // Clear All Data
+      clearAllBtn.addEventListener("click", () => {
+        if (studentsData.length === 0) return;
+        clearModal.classList.remove("hidden");
+      });
+
+      cancelClear.addEventListener("click", () => {
+        clearModal.classList.add("hidden");
+      });
+
+      confirmClear.addEventListener("click", async () => {
+        if (isProcessing) return;
+
+        isProcessing = true;
+        confirmClear.disabled = true;
+        confirmClear.textContent = "Menghapus...";
+
+        for (const student of [...studentsData]) {
+          await window.dataSdk.delete(student);
+        }
+
+        isProcessing = false;
+        confirmClear.disabled = false;
+        confirmClear.textContent = "Hapus Semua";
+        clearModal.classList.add("hidden");
+      });
+
+      clearModal.addEventListener("click", (e) => {
+        if (e.target === clearModal) {
+          clearModal.classList.add("hidden");
+        }
+      });
+
+      // Initialize App
+      initApp();
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9ce410199298fd8c',t:'MTc3MTE1MDcyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
